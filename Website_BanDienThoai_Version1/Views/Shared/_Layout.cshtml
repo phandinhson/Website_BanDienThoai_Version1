@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Website_BanDienThoai_Version1</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+    </environment>
+ 
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/slider.css" rel="stylesheet" />
+    <script src="~/js/slides.min.jquery.js"></script>
+    <script src="~/js/startstop-slider.js"></script>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <div class="header">
+                <div class="headertop_desc">
+                    <div class="call">
+                        <p><span>Cần giúp đỡ?</span> gọi cho chúng tôi <span class="number">096-880-6360</span></span></p>
+                    </div>
+                    <div class="account_desc">
+                        <ul>
+                            <li><a asp-area="" asp-controller="Register" asp-action="Index">Đăng ký</a></li>
+                            <li><a asp-area="" asp-controller="Login" asp-action="Index">Đăng nhập</a></li>
+                            <li><a asp-area="" asp-controller="Logout" asp-action="Index">Đăng xuất</a></li>
+                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Tài khoản</a></li>
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="header_top">
+                    <div class="logo">
+                        <a href="index.html"><img src="~/images/logo.png" alt="" /></a>
+                    </div>
+                    <div class="cart">
+                        <p>
+                            Xin chào các bạn đến với cửa hàng của chúng tôi! <span style="font-size: 16px;">
+                                Giỏ hàng
+                                :
+                            </span>
+                            <div id="dd" class="wrapper-dropdown-2">
+                                0 sản phẩm - 0đ
+                                <ul class="dropdown">
+                                    <li>Bạn có thể chọn các sản phầm dưới đây :</li>
+                                </ul>
+                            </div>
+                        </p>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="header_bottom">
+                    <div class="menu">
+                        <ul>
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
+                            <li><a asp-area="" asp-controller="Phone" asp-action="Phone">ĐIỆN THOẠI</a></li>
+                            <li><a asp-area="" asp-controller="Tablet" asp-action="">TABLET</a></li>
+                            <li><a asp-area="" asp-controller="Laptop" asp-action="">LAPTOP</a></li>
+                            <li><a asp-area="" asp-controller="Phukien" asp-action="">PHỤ KIỆN</a></li>
+                            <li><a asp-area="" asp-controller="About" asp-action="">THÔNG TIN</a></li>
+                            <li><a asp-area="" asp-controller="Contact" asp-action="">LIÊN HỆ</a></li>
+                        </ul>
+                    </div>
+                    <div class="search_box">
+                        <form>
+                            <input type="text" value="Search" onfocus="this.value = '';"
+                                   onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="wrap">
+        <div class="header">
+            @RenderBody()
+        </div>  
+    </div>
+
+    <div class="footer">
+        <div class="wrap">
+            <div class="section group">
+                <div class="col_1_of_4 span_1_of_4">
+                    <h4>Thông tin</h4>
+                    <ul>
+                        <li><a href="about.html">Thông tin của chúng tôi</a></li>
+                        <li><a href="contact.html">Dịch vụ khách hàng</a></li>
+                        <li><a href="contact.html">Liên hệ với chúng tôi</a></li>
+                    </ul>
+                </div>
+                <div class="col_1_of_4 span_1_of_4">
+                    <h4>Tại sao bạn mua hàng</h4>
+                    <ul>
+                        <li><a href="about.html">Thông tin của chúng tô</a></li>
+                        <li><a href="contact.html">Dịch vụ khách hàng</a></li>
+                        <li><a href="#">Tìm kiếm sản phẩm</a></li>
+                    </ul>
+                </div>
+                <div class="col_1_of_4 span_1_of_4">
+                    <h4>Tài khoản</h4>
+                    <ul>
+                        <li><a href="login.html">Đăng nhập</a></li>
+                        <li><a href="index.html">Xem sản phẩm</a></li>
+                        <li><a href="contact.html">Giúp đỡ</a></li>
+                    </ul>
+                </div>
+                <div class="col_1_of_4 span_1_of_4">
+                    <h4>Liên hệ</h4>
+                    <ul>
+                        <li><span>0128-338-1683</span></li>
+                    </ul>
+                    <div class="social-icons">
+                        <h4>Theo dõi thông tin qua</h4>
+                        <ul>
+                            <li><a href="#" target="_blank"><img src="images/facebook.png" alt="" /></a></li>
+                            <li><a href="#" target="_blank"> <img src="images/dribbble.png" alt="" /></a></li>
+                            <li><a href="#" target="_blank"> <img src="images/linkedin.png" alt="" /></a></li>
+
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy_right">
+            <p>
+                &copy; 2019 Home Shoppe. Đã đăng ký bản quyền | Thiết kế bởi <a href="#">Team IT HCMUTE</a>
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+
+        function DropDown(el) {
+            this.dd = el;
+            this.initEvents();
+        }
+        DropDown.prototype = {
+            initEvents: function () {
+                var obj = this;
+
+                obj.dd.on('click', function (event) {
+                    $(this).toggleClass('active');
+                    event.stopPropagation();
+                });
+            }
+        }
+
+        $(function () {
+
+            var dd = new DropDown($('#dd'));
+
+            $(document).click(function () {
+                // all dropdowns
+                $('.wrapper-dropdown-2').removeClass('active');
+            });
+
+        });
+
+
+    </script>
+    <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
