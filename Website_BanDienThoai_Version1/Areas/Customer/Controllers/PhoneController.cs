@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Website_BanDienThoai_Version1.Controllers
 {
+    [Area("Customer")]
     public class PhoneController : Controller
     {
         public IActionResult Phone()

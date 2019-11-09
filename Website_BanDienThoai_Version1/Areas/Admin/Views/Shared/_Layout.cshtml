@@ -1,15 +1,9 @@
-﻿@using Microsoft.AspNetCore.Http
-@using Website_BanDienThoai_Version1.Extentions
-@using Website_BanDienThoai_Version1.Utility
-
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Website_BanDienThoai_Version1</title>
+    <title>Website_BanDienThoai_Version1</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -32,84 +26,10 @@
     <script src="~/js/startstop-slider.js"></script>
 </head>
 <body>
-    <header>
-        <div class="wrap">
-            <div class="header">
-                <div class="headertop_desc">
-                    <div class="call">
-                        <p><span>Cần giúp đỡ?</span> gọi cho chúng tôi <span class="number">096-880-6360</span></span></p>
-                    </div>
-                    <div class="account_desc">
-                        <ul>
-                            <li><a asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a></li>
-                            <li><a asp-area="Admin" asp-controller="Category" asp-action="Index">Product Types</a></li>
-                            <li><a asp-area="" asp-controller="Register" asp-action="Index">Đăng ký</a></li>
-                            <li><a asp-area="" asp-controller="Login" asp-action="Index">Đăng nhập</a></li>
-                            <li><a asp-area="" asp-controller="Logout" asp-action="Index">Đăng xuất</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Tài khoản</a></li>
-                            @if (httpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
-                            {
-                                <li style="color:white">
-                                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-                                        <i class="fas fa-shoping-cart"></i>&nbsp;
-                                        @{
-                                            var count = httpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
 
-                                        }
-                                        (@count)
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li style="color:white" >
-                                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-                                        <i class="fas fa-shopping-cart"></i>&nbsp;
-                                        (0)
-                                    </a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="header_top">
-                    <div class="logo">
-                        <a href="index.html"><img src="~/images/logo.png" alt="" /></a>
-                    </div>
-                </div>
-
-                <div class="clear"></div>
-            </div>
-            <div class="header_bottom">
-                <div class="menu">
-                    <ul>
-                        <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
-                        <li><a asp-area="" asp-controller="Phone" asp-action="Index">ĐIỆN THOẠI</a></li>
-                        <li><a asp-area="" asp-controller="Tablet" asp-action="">TABLET</a></li>
-                        <li><a asp-area="" asp-controller="Laptop" asp-action="">LAPTOP</a></li>
-                        <li><a asp-area="" asp-controller="Phukien" asp-action="">PHỤ KIỆN</a></li>
-                        <li><a asp-area="" asp-controller="About" asp-action="">THÔNG TIN</a></li>
-                        <li><a asp-area="" asp-controller="Contact" asp-action="">LIÊN HỆ</a></li>
-                       
-                    </ul>
-                </div>
-                <div class="search_box">
-                    <form>
-                        <input type="text" value="Search" onfocus="this.value = '';"
-                               onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
-                    </form>
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
- 
-    </header>
-    <div class="wrap">
-        <div class="header">
-            @RenderBody()
-        </div>
-    </div>
+    
+     @RenderBody()
+    
 
     <div class="footer">
         <div class="wrap">
@@ -120,6 +40,7 @@
                         <li><a href="about.html">Thông tin của chúng tôi</a></li>
                         <li><a href="contact.html">Dịch vụ khách hàng</a></li>
                         <li><a href="contact.html">Liên hệ với chúng tôi</a></li>
+
                     </ul>
                 </div>
                 <div class="col_1_of_4 span_1_of_4">
