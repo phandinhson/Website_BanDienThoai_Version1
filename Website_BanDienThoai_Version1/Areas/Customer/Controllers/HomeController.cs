@@ -46,7 +46,10 @@ namespace Website_BanDienThoai_Version1.Controllers
             }
             lstShoppingCart.Add(id);
             HttpContext.Session.Set("ssShoppingCart", lstShoppingCart);
-            return RedirectToAction("Index", "Home", new { area ="Customer"});
+           
+
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

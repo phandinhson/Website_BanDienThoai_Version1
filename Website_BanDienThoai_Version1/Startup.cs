@@ -34,16 +34,22 @@ namespace Website_BanDienThoai_Version1
 
             var connection = Configuration.GetConnectionString("PhoneDatabase");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddSessionStateTempDataProvider();
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+         
 
+            services.AddDistributedMemoryCache();
+         
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
+
                 options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
-          
+       
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +69,9 @@ namespace Website_BanDienThoai_Version1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+          
             app.UseSession();
+         
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

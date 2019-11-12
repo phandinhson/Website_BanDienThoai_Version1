@@ -21,5 +21,8 @@ namespace Website_BanDienThoai_Version1.Data
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<SpecialTag> SpecialTag { get; set; }
         public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<Bill> Bill { get; set; }
+        public virtual DbSet<ProductSelectedBill> ProductSelectedBill { get; set; }
     }
 }

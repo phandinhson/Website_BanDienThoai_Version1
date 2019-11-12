@@ -3,42 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Website_BanDienThoai_Version1.Data;
 
 namespace Website_BanDienThoai_Version1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191110093456_addCustomer")]
+    partial class addCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CustomerId");
-
-                    b.Property<int?>("CustomersId");
-
-                    b.Property<DateTime?>("DateBill");
-
-                    b.Property<int?>("TotalPrice");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomersId");
-
-                    b.ToTable("Bill");
-                });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Category", b =>
                 {
@@ -76,27 +57,6 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedBill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BillId");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<int?>("ProductsId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BillId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("ProductSelectedBill");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Products", b =>
@@ -145,25 +105,6 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SpecialTag");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
-                {
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Customers", "Customers")
-                        .WithMany()
-                        .HasForeignKey("CustomersId");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedBill", b =>
-                {
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Bill", "Bill")
-                        .WithMany()
-                        .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductsId");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Products", b =>

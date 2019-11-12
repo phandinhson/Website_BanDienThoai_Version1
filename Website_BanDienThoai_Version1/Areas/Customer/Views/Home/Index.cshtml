@@ -1,11 +1,35 @@
 ﻿@model List<Website_BanDienThoai_Version1.Models.Products>
+@using Microsoft.AspNetCore.Http
+@using Website_BanDienThoai_Version1.Extentions
+@using Website_BanDienThoai_Version1.Utility
+
+@inject IHttpContextAccessor HttpContextAccessor
 
 
 
-@{
-    ViewData["Title"] = "Home Page";
+
+@if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+{
+    <li style="color:white">
+        <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>&nbsp;
+            @{
+                var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+
+            }
+            (@count)
+        </a>
+    </li>
 }
-
+else
+{
+    <li style="color:white">
+        <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+            <i class="fas fa-shopping-cart"></i>&nbsp;
+           (0)
+        </a>
+    </li>
+}
 <div class="header_slide">
     <div class="header_bottom_right">
         <div class="slider">
@@ -82,7 +106,7 @@
     <div class="row">
         @foreach (var product in Model)
         {
-            @if (product.SpecialTag.Name=="Mới nhập")
+            @if (product.SpecialTag.Name == "Mới nhập")
             {
                 <div class="col-4">
                     <div class="card mb-4">
@@ -101,7 +125,8 @@
                                 </div>
                                 <div class="add-cart">
                                     <a asp-action="Details" asp-controller="Home" class="button" asp-route-id="@product.Id">
-                                    View Details</a>
+                                        View Details
+                                    </a>
                                 </div>
 
                             </div>
