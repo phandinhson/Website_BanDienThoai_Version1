@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Website_BanDienThoai_Version1.Migrations
 {
-    public partial class addBillAndProductSelectedBill : Migration
+    public partial class addBillAndBillDetails : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,69 +14,57 @@ namespace Website_BanDienThoai_Version1.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TotalPrice = table.Column<int>(nullable: true),
-                    CustomerId = table.Column<int>(nullable: false),
-                    DateBill = table.Column<DateTime>(nullable: true),
-                    CustomersId = table.Column<int>(nullable: true)
+                    UserId = table.Column<int>(nullable: false),
+                    TotalPrice = table.Column<int>(nullable: false),
+                    BillData = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bill", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Bill_Customers_CustomersId",
-                        column: x => x.CustomersId,
-                        principalTable: "Customers",
+                        name: "FK_Bill_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProductSelectedBill",
+                name: "Bill_Details",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    ProductId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BillId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false),
-                    ProductsId = table.Column<int>(nullable: true)
+                    Price = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductSelectedBill", x => x.Id);
+                    table.PrimaryKey("PK_Bill_Details", x => new { x.ProductId, x.BillId });
                     table.ForeignKey(
-                        name: "FK_ProductSelectedBill_Bill_BillId",
+                        name: "FK_Bill_Details_Bill_BillId",
                         column: x => x.BillId,
                         principalTable: "Bill",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductSelectedBill_Products_ProductsId",
-                        column: x => x.ProductsId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bill_CustomersId",
+                name: "IX_Bill_UserId",
                 table: "Bill",
-                column: "CustomersId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductSelectedBill_BillId",
-                table: "ProductSelectedBill",
+                name: "IX_Bill_Details_BillId",
+                table: "Bill_Details",
                 column: "BillId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductSelectedBill_ProductsId",
-                table: "ProductSelectedBill",
-                column: "ProductsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProductSelectedBill");
+                name: "Bill_Details");
 
             migrationBuilder.DropTable(
                 name: "Bill");

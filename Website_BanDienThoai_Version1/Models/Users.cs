@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Website_BanDienThoai_Version1.Models
 {
-    public class Customers
+    public class Users
     {
         public int Id { get; set; }
         public string UserName { get; set; }

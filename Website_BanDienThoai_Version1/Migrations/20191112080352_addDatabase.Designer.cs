@@ -10,8 +10,8 @@ using Website_BanDienThoai_Version1.Data;
 namespace Website_BanDienThoai_Version1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191111054600_addBillAndProductSelectedBill")]
-    partial class addBillAndProductSelectedBill
+    [Migration("20191112080352_addDatabase")]
+    partial class addDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,25 +21,65 @@ namespace Website_BanDienThoai_Version1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Appointments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AppointmentsDate");
+
+                    b.Property<string>("CustomerName");
+
+                    b.Property<string>("CustomerNumberPhone");
+
+                    b.Property<bool>("isConfirmed");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Appointments");
+                });
+
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomerId");
+                    b.Property<DateTime>("BillDate");
 
-                    b.Property<int?>("CustomersId");
+                    b.Property<int>("TotalPrice");
 
-                    b.Property<DateTime?>("DateBill");
-
-                    b.Property<int?>("TotalPrice");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomersId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Bill");
+                });
+
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill_Details", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BillId");
+
+                    b.Property<int>("Price");
+
+                    b.Property<int?>("ProductId1");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("ProductId1");
+
+                    b.ToTable("Bill_Details");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Category", b =>
@@ -55,50 +95,23 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Customers", b =>
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedForAppointment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateOfBith");
-
-                    b.Property<string>("Email");
-
-                    b.Property<int>("Gender");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Password");
-
-                    b.Property<string>("Phone");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedBill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BillId");
+                    b.Property<int>("AppointmentId");
 
                     b.Property<int>("ProductId");
 
-                    b.Property<int?>("ProductsId");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("BillId");
+                    b.HasIndex("AppointmentId");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("ProductSelectedBill");
+                    b.ToTable("ProductSelectedForAppointment");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Products", b =>
@@ -149,23 +162,62 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.ToTable("SpecialTag");
                 });
 
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Users", b =>
                 {
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Customers", "Customers")
-                        .WithMany()
-                        .HasForeignKey("CustomersId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateOfBith");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("Gender");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Password");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedBill", b =>
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
+                {
+                    b.HasOne("Website_BanDienThoai_Version1.Models.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill_Details", b =>
                 {
                     b.HasOne("Website_BanDienThoai_Version1.Models.Bill", "Bill")
-                        .WithMany()
+                        .WithMany("Bill_Details")
                         .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Website_BanDienThoai_Version1.Models.Products", "Product")
+                        .WithMany("Bill_Detail")
+                        .HasForeignKey("ProductId1");
+                });
+
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedForAppointment", b =>
+                {
+                    b.HasOne("Website_BanDienThoai_Version1.Models.Appointments", "Appointments")
+                        .WithMany()
+                        .HasForeignKey("AppointmentId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Website_BanDienThoai_Version1.Models.Products", "Products")
                         .WithMany()
-                        .HasForeignKey("ProductsId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Products", b =>

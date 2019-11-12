@@ -8,6 +8,8 @@ namespace Website_BanDienThoai_Version1.Models.ViewModel
     public class ShoppingCartViewModel
     {
         public List<Products> Products { get; set; }
+        public Appointments Appointments { get; set; }
+
 
     }
 }

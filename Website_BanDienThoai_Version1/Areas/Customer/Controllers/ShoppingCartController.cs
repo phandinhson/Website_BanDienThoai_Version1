@@ -23,8 +23,8 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
             _db = db;
             ShoppingCartVM = new ShoppingCartViewModel()
             {
-                Products = new List<Models.Products>()
-
+                Products = new List<Models.Products>(),
+               
             };
         }
        

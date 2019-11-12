@@ -35,15 +35,15 @@ namespace Website_BanDienThoai_Version1.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var products = _db.Products.Include(m => m.Category).Include(m => m.SpecialTag);
+            var products = _db.Products.FromSql("EXECUTE DBO.Select_All_Product");
 
-            return View(await products.ToListAsync());
+
+             return View( products.ToList());
+            //var products = _db.Products.Include(m => m.Category).Include(m => m.SpecialTag);
+
+            //return View(await products.ToListAsync());
         }
-        //public IActionResult Index()
-        //{
-        //    var products = _db.Products.Include(m => m.Category).Include(m => m.SpecialTag);
-        //    return View(products.FromSql("EXECUTE DBO.Select_All_Product"));
-        //}
+       
         //Get: Products Create
         public IActionResult Create()
         {

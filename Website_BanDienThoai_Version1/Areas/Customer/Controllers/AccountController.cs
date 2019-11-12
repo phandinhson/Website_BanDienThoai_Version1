@@ -36,7 +36,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                var userdetails = await _db.Customers
+                var userdetails = await _db.Users
                 .SingleOrDefaultAsync(m => m.UserName == model.UseName && m.Password == model.Password);
                 if (userdetails == null)
                 {
@@ -61,7 +61,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
         {
             if (ModelState.IsValid)
             {
-                Customers user = new Customers
+                Users user = new Users
                 {
                     UserName = model.UserName,
                     Phone = model.Phone,

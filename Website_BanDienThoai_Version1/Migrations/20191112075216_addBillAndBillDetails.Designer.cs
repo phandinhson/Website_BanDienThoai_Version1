@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Website_BanDienThoai_Version1.Data;
 
 namespace Website_BanDienThoai_Version1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191112075216_addBillAndBillDetails")]
+    partial class addBillAndBillDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,7 @@ namespace Website_BanDienThoai_Version1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("BillDate");
+                    b.Property<DateTime>("BillData");
 
                     b.Property<int>("TotalPrice");
 
@@ -67,15 +69,11 @@ namespace Website_BanDienThoai_Version1.Migrations
 
                     b.Property<int>("Price");
 
-                    b.Property<int?>("ProductId1");
-
                     b.Property<int>("Quantity");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("ProductId","BillId") ;
 
                     b.HasIndex("BillId");
-
-                    b.HasIndex("ProductId1");
 
                     b.ToTable("Bill_Details");
                 });
@@ -199,10 +197,6 @@ namespace Website_BanDienThoai_Version1.Migrations
                         .WithMany("Bill_Details")
                         .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Products", "Product")
-                        .WithMany("Bill_Detail")
-                        .HasForeignKey("ProductId1");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedForAppointment", b =>

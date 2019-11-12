@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Website_BanDienThoai_Version1.Data;
 
 namespace Website_BanDienThoai_Version1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191112043502_addAppointmentsAndProductSelectedForAppointment")]
+    partial class addAppointmentsAndProductSelectedForAppointment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,48 +38,6 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Appointments");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("BillDate");
-
-                    b.Property<int>("TotalPrice");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Bill");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill_Details", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BillId");
-
-                    b.Property<int>("Price");
-
-                    b.Property<int?>("ProductId1");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("ProductId");
-
-                    b.HasIndex("BillId");
-
-                    b.HasIndex("ProductId1");
-
-                    b.ToTable("Bill_Details");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Category", b =>
@@ -183,26 +143,6 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
-                {
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill_Details", b =>
-                {
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Bill", "Bill")
-                        .WithMany("Bill_Details")
-                        .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Website_BanDienThoai_Version1.Models.Products", "Product")
-                        .WithMany("Bill_Detail")
-                        .HasForeignKey("ProductId1");
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.ProductSelectedForAppointment", b =>

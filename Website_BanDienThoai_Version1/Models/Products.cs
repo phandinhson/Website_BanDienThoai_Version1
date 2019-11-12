@@ -29,5 +29,7 @@ namespace Website_BanDienThoai_Version1.Models
         public int SpecialTagId { get; set; }
         [ForeignKey("SpecialTagId")]
         public virtual SpecialTag SpecialTag { get; set; }
+
+        public ICollection<Bill_Details> Bill_Detail { get; set; }
     }
 }
