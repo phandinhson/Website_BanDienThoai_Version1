@@ -1,12 +1,7 @@
 ﻿@model List<Website_BanDienThoai_Version1.Models.Products>
-@using Microsoft.AspNetCore.Http
 
 
-
-
-
-
-
+<br />
 
 <div class="header_slide">
     <div class="header_bottom_right">
@@ -84,7 +79,7 @@
     <div class="row">
         @foreach (var product in Model)
         {
-            @if (product.SpecialTag.Name == "Mới ra")
+            @if (product.Category.Name == "Laptop")
             {
                 <div class="col-4">
                     <div class="card mb-4">
@@ -114,51 +109,6 @@
                 </div>
             }
 
-        }
-    </div>
-</div>
-<div class="content_top">
-    <div class="heading">
-        <h3>Sản phẩm đặc biệt</h3>
-    </div>
-    <div class="see">
-        <p><a href="#">Xem tất cả sản phẩm</a></p>
-    </div>
-    <div class="clear"></div>
-</div>
-<div class="main">
-    <div class="row">
-        @foreach (var product in Model)
-        {
-            @if (product.SpecialTag.Name == "Đặc biệt")
-            {
-                <div class="col-4">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h4 class="my-0 font-weight-normal">
-                                <label style="font-size:18px;color:steelblue;">@product.Name</label>
-                            </h4>
-
-                        </div>
-                        <img class="card-img-top" style="height:100%;" src="@product.Image" alt="Card Image" />
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <label style="font-size:20px;color:#a51313;">Giá:&nbsp;<b>@product.Price<sup>đ</sup></b></label>
-
-                                </div>
-                                <div class="add-cart">
-                                    <a asp-action="Details" asp-controller="Home" class="button" asp-route-id="@product.Id">
-                                        View Details
-                                    </a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            }
 
         }
     </div>

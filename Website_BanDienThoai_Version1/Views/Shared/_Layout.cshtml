@@ -65,14 +65,36 @@
             <div class="header_bottom">
                 <div class="menu">
                     <ul>
-                        <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
-                        <li><a asp-area="Customer" asp-controller="Phone" asp-action="Index">ĐIỆN THOẠI</a></li>
-                        <li><a asp-area="" asp-controller="Tablet" asp-action="">TABLET</a></li>
-                        <li><a asp-area="" asp-controller="Laptop" asp-action="">LAPTOP</a></li>
-                        <li><a asp-area="" asp-controller="Phukien" asp-action="">PHỤ KIỆN</a></li>
-                        <li><a asp-area="" asp-controller="About" asp-action="">THÔNG TIN</a></li>
-                        <li><a asp-area="" asp-controller="Contact" asp-action="">LIÊN HỆ</a></li>
-                       
+                        <li ><a asp-area="Customer" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
+                        <li ><a asp-area="Customer" asp-controller="Phone" asp-action="Index">ĐIỆN THOẠI</a></li>
+                        <li ><a asp-area="Customer" asp-controller="Tablet" asp-action="Index">TABLET</a></li>
+                        <li ><a asp-area="Customer" asp-controller="Laptop" asp-action="Index">LAPTOP</a></li>
+                        <li ><a asp-area="Customer" asp-controller="LinhKien" asp-action="Index">LINH KIỆN</a></li>
+                        <li ><a asp-area="" asp-controller="About" asp-action="">THÔNG TIN</a></li>
+                        <li ><a asp-area="" asp-controller="Contact" asp-action="">LIÊN HỆ</a></li>
+                        @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+
+                                    }
+                                    (@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="color:white">
+                                <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;
+                                    (0)
+                                </a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
                 <div class="search_box">

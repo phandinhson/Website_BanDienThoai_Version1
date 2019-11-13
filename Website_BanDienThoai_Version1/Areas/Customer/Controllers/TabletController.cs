@@ -9,10 +9,10 @@ using Website_BanDienThoai_Version1.Data;
 namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    public class LaptopController : Controller
+    public class TabletController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public LaptopController(ApplicationDbContext db)
+        public TabletController(ApplicationDbContext db)
         {
             _db = db;
         }

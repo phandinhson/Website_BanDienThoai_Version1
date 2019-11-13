@@ -25,5 +25,10 @@
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\images\ProductImage\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <PropertyPageSchema Include="$(ManagedXamlResourcesDirectory)CSharp.ProjectItemsSchema.xaml;" />
+    <ProjectCapability Include="CSharp;Managed;ClassDesigner" />
+  </ItemGroup>
 
 </Project>
