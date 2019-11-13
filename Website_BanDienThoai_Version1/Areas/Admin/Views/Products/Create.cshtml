@@ -89,7 +89,7 @@
                 <label asp-for="Category"></label>
             </div>
             <div class="col-5">
-               <select asp-for="@Model.Products.CategoryId" asp-items="Model.Category.ToSelectListItem(Model.Products.CategoryId)" class="form-control"></select>
+                <select asp-for="@Model.Products.CategoryId" asp-items="Model.Category.ToSelectListItem(Model.Products.CategoryId)" class="form-control"></select>
 
 
             </div>
@@ -113,7 +113,3 @@
         </div>
     </div>
 </form>
-@section Scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-

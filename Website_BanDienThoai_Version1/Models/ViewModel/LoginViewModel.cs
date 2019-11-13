@@ -8,11 +8,9 @@ namespace Website_BanDienThoai_Version1.Models.ViewModel
 {
     public class LoginViewModel
     {
-        [Required]
-        public string UseName { get; set; }
-
-        [Required]
-        [StringLength(20, MinimumLength = 6)]
+        [Required(ErrorMessage = "Name is required.")]
+        public string UserName { get; set; }
+        [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
     }
 }

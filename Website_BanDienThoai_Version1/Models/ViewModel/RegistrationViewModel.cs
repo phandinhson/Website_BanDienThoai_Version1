@@ -11,10 +11,8 @@ namespace Website_BanDienThoai_Version1.Models.ViewModel
     {
         [Required]
         [StringLength(20, MinimumLength = 3)]
-        //[StringLength(15, ErrorMessage = "Name length can't be more than 15.")]
         public string UserName { get; set; }
         [Required]
-        [RegularExpression(@"^(\d{10})$", ErrorMessage = "Mobile no not valid")]
         public string Phone { get; set; }
         [Required]
         [EmailAddress]
@@ -23,7 +21,7 @@ namespace Website_BanDienThoai_Version1.Models.ViewModel
         [DataType("DataTime")]
         public DateTime DateOfBith { get; set; }
         [Required]
-        public int Gender { get; set; }
+        public string Gender { get; set; }
         [Required]
         [StringLength(10, MinimumLength = 6)]
         public string Password { get; set; }
@@ -31,6 +29,5 @@ namespace Website_BanDienThoai_Version1.Models.ViewModel
         [NotMapped] // Does not effect with your database
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-
     }
 }

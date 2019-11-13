@@ -1,7 +1,79 @@
-﻿
+﻿@model IEnumerable<Website_BanDienThoai_Version1.Models.Users>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<br />
+<br />
 
+<div class="row">
+    <div class="col-6">
+        <h3 class="align-text-bottom"> Users List</h3>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus-circle"></i> New Category</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped boder">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DateOfBith)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Gender)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(m => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.DateOfBith)
+        </td>
+        <td>
+            @Html.DisplayFor(m => item.Gender)
+        </td>
+        <td style="width:100px">
+            <div class="btn-group" role="group">
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fas fa-list-alt"></i></a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+            </div>
+        </td>
+    </tr>
+
+        }
+    </table>
+</div>
