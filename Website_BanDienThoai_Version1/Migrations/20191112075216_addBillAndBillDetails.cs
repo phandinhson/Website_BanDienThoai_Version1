@@ -48,6 +48,12 @@ namespace Website_BanDienThoai_Version1.Migrations
                         principalTable: "Bill",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                       name: "FK_Bill_Details_Products_ProductId",
+                       column: x => x.ProductId,
+                       principalTable: "Products",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
