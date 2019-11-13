@@ -16,7 +16,7 @@ namespace Website_BanDienThoai_Version1.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     UserId = table.Column<int>(nullable: false),
                     TotalPrice = table.Column<int>(nullable: false),
-                    BillData = table.Column<DateTime>(nullable: false)
+                    BillDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
