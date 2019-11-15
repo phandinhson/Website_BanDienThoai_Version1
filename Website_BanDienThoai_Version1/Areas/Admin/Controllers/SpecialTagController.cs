@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Website_BanDienThoai_Version1.Data;
 using Website_BanDienThoai_Version1.Models;
 
@@ -18,7 +19,9 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            return View(_db.SpecialTag.ToList());
+     
+            var special = _db.SpecialTag.FromSql("EXECUTE DBO.Select_All_SpecialTag");
+            return View(special);
         }
         public IActionResult Create()
         {
@@ -30,12 +33,11 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_Category {0}",
-                //    special.Name);
-                //_db.Entry(special).Reload();
-                //await _db.SaveChangesAsync();
-                _db.Add(special);
+                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_SpecialTag {0}",
+                    special.Name);
+                _db.Entry(special).Reload();
                 await _db.SaveChangesAsync();
+            
                 return RedirectToAction(nameof(Index));
             }
             return View(special);
@@ -48,6 +50,7 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
                 return NotFound();
             }
             var product = await _db.SpecialTag.FindAsync(id);
+            //var product =_db.SpecialTag.FromSql("EXECUTE DBO.Sellect_SpecialTag_Id {0}", id);
             if (product == null)
             {
                 return NotFound();
@@ -66,12 +69,12 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
-                //   category.Name);
-                //_db.Entry(category).Reload();
-                //await _db.SaveChangesAsync();
-                _db.Update(special);
+                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_SpecialTag {0},{1}", id,
+                   special.Name);
+                _db.Entry(special).Reload();
                 await _db.SaveChangesAsync();
+                //_db.Update(special);
+                //await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(special);

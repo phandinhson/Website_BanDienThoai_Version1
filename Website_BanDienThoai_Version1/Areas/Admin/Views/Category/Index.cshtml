@@ -8,11 +8,14 @@
 <br />
 
 <div class="row">
-    <div class="col-6">
-        <h3 class="align-text-bottom"> Category List</h3>
+    <div class="col-6 " style="padding-left:40px;font-size:30px;">
+
+        <p class="text-info"> Category List</p>
     </div>
-    <div class="col-6 text-right">
-        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus-circle"></i> New Category</a>
+
+
+    <div class="col-6 text-right" style="padding-right:20px">
+        <a asp-action="Create" class="btn btn-info">New Category</a>
     </div>
 </div>
 <br />
@@ -22,7 +25,9 @@
             <th>
                 @Html.DisplayNameFor(m => m.Name)
             </th>
+            <th>
 
+            </th>
         </tr>
         @foreach (var item in Model)
         {
@@ -31,12 +36,11 @@
                     @Html.DisplayFor(m => item.Name)
                 </td>
 
-                <td style="width:100px">
-                    <div class="btn-group" role="group">
+                <td style="width:150px;">
+                    <div class="btn-group" role="group" >
                         <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
                         <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fas fa-list-alt"></i></a>
                         <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
-
                     </div>
                 </td>
             </tr>
@@ -44,4 +48,5 @@
         }
     </table>
 </div>
+
 

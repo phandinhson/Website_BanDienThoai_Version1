@@ -33,8 +33,7 @@ namespace Website_BanDienThoai_Version1.Migrations
                 name: "Bill_Details",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<int>(nullable: false),
                     BillId = table.Column<int>(nullable: false),
                     Price = table.Column<int>(nullable: false),
                     Quantity = table.Column<int>(nullable: false)

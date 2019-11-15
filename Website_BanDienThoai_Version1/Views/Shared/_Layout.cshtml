@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using Website_BanDienThoai_Version1.Extentions
-@using Website_BanDienThoai_Version1.Utility
+
 
 @inject IHttpContextAccessor HttpContextAccessor
 
@@ -30,8 +30,7 @@
 
     <link href="~/css/style.css" rel="stylesheet" />
     <link href="~/css/slider.css" rel="stylesheet" />
-    <script src="~/js/slides.min.jquery.js"></script>
-    <script src="~/js/startstop-slider.js"></script>
+  
 </head>
 <body>
     <header>
@@ -46,8 +45,8 @@
                             <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
                             <li><a asp-area="Customer" asp-controller="Account" asp-action="Register">Đăng ký</a></li>
                             <li><a asp-area="Customer" asp-controller="Account" asp-action="Login">Đăng nhập</a></li>
-                            <li><a asp-area="" asp-controller="Logout" asp-action="Index">Đăng xuất</a></li>
-                            <li><a asp-area="" asp-controller="Account" asp-action="Index">Tài khoản</a></li>
+                            <li><a asp-area="Customer" asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
+                            <li><a asp-area="Customer" asp-controller="Account" asp-action="AccountUser">Tài khoản</a></li>
 
                         </ul>
                     </div>
@@ -64,13 +63,13 @@
             <div class="header_bottom">
                 <div class="menu">
                     <ul>
-                        <li ><a asp-area="Customer" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
-                        <li ><a asp-area="Customer" asp-controller="Phone" asp-action="Index">ĐIỆN THOẠI</a></li>
-                        <li ><a asp-area="Customer" asp-controller="Tablet" asp-action="Index">TABLET</a></li>
-                        <li ><a asp-area="Customer" asp-controller="Laptop" asp-action="Index">LAPTOP</a></li>
-                        <li ><a asp-area="Customer" asp-controller="LinhKien" asp-action="Index">LINH KIỆN</a></li>
-                        <li ><a asp-area="" asp-controller="About" asp-action="">THÔNG TIN</a></li>
-                        <li ><a asp-area="" asp-controller="Contact" asp-action="">LIÊN HỆ</a></li>
+                        <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">TRANG CHỦ</a></li>
+                        <li><a asp-area="Customer" asp-controller="Phone" asp-action="Index">ĐIỆN THOẠI</a></li>
+                        <li><a asp-area="Customer" asp-controller="Tablet" asp-action="Index">TABLET</a></li>
+                        <li><a asp-area="Customer" asp-controller="Laptop" asp-action="Index">LAPTOP</a></li>
+                        <li><a asp-area="Customer" asp-controller="LinhKien" asp-action="Index">LINH KIỆN</a></li>
+                        <li><a asp-area="Customer" asp-controller="About" asp-action="Index">THÔNG TIN</a></li>
+                        <li><a asp-area="Customer" asp-controller="Contact" asp-action="Index">LIÊN HỆ</a></li>
                         @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
                         {
                             <li style="color:white">
@@ -105,7 +104,7 @@
                 <div class="clear"></div>
             </div>
         </div>
- 
+
     </header>
     <div class="wrap">
         <div class="header">
@@ -163,6 +162,7 @@
             </p>
         </div>
     </div>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $().UItoTop({ easingType: 'easeOutQuart' });
@@ -223,7 +223,8 @@
                 crossorigin="anonymous"></script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script src="~/js/slides.min.jquery.js"></script>
+    <script src="~/js/startstop-slider.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -8,10 +8,11 @@ namespace Website_BanDienThoai_Version1.Models
     public class Appointments
     {
         public int Id { get; set; }
-        public DateTime AppointmentsDate { get; set; }
         public string CustomerName { get; set; }
-        public string CustomerNumberPhone { get; set; }
-        public bool isConfirmed { get; set; }
-
+        public string CustomerPhoneNumber { get; set; }
+        public string CustomerEmail { get; set; }
+        public string AppointmentDate { get; set; }
+        public int TotalPrice { get; set; }
+        public DateTime BillDate { get; set; }
     }
 }

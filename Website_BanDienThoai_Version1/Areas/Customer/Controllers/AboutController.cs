@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
+namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
 {
-    [Area("Admin")]
-    public class HomeController : Controller
+    [Area("Customer")]
+    public class AboutController : Controller
     {
         public IActionResult Index()
         {

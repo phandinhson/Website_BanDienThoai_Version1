@@ -18,7 +18,7 @@ namespace Website_BanDienThoai_Version1.Models
         public string Manufacturer { get; set; }
         public string Color { get; set; }
         [DataType(DataType.Currency)]
-        public int? Price { get; set; }
+        public int Price { get; set; }
 
         [Display(Name = " Product Category")]
         public int CategoryId { get; set; }

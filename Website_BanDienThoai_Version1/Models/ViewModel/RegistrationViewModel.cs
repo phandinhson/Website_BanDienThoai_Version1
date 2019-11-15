@@ -18,6 +18,10 @@ namespace Website_BanDienThoai_Version1.Models.ViewModel
         [EmailAddress]
         public string Email { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 3)]
+        public string Name { get; set; }
+        
+        [Required]
         [DataType("DataTime")]
         public DateTime DateOfBith { get; set; }
         [Required]

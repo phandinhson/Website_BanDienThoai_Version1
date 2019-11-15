@@ -21,7 +21,6 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var categories = _db.Category.FromSql("EXECUTE DBO.Select_All_Category");
-            //return View(_db.Category.ToList());
             return View(categories);
         }
         //Get Create Action Method
@@ -39,8 +38,6 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
                     category.Name);
                 _db.Entry(category).Reload();
                 await _db.SaveChangesAsync();
-                //_db.Add(category);
-                //await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -52,12 +49,12 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var product = await _db.Category.FindAsync(id);
-            if (product == null)
+            var category = await _db.Category.FindAsync(id);
+            if (category == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(category);
         }
 
         //POST Edit action Method
@@ -75,8 +72,6 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
                    category.Name);
                 _db.Entry(category).Reload();
                 await _db.SaveChangesAsync();
-                //_db.Update(category);
-                //await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -96,27 +91,25 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             return View(product);
         }
 
-        //POST Details action Method
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(int id, Category category)
-        {
-            if (id != category.Id)
-            {
-                return NotFound();
-            }
-            if (ModelState.IsValid)
-            {
-                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
-                   category.Name);
-                _db.Entry(category).Reload();
-                await _db.SaveChangesAsync();
-                //_db.Update(category);
-                //await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
-            }
-            return View(category);
-        }
+        ////POST Details action Method
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Details(int id, Category category)
+        //{
+        //    if (id != category.Id)
+        //    {
+        //        return NotFound();
+        //    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
+        //           category.Name);
+        //        _db.Entry(category).Reload();
+        //        await _db.SaveChangesAsync();
+        //        return RedirectToPage("Index");
+        //    }
+        //    return View(category);
+        //}
 
         // Get Delete Action Method
         public async Task<IActionResult> Delete(int? id)
@@ -138,13 +131,9 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
             var category = await _db.Category.FindAsync(id);
-
             _db.Database.ExecuteSqlCommand("EXECUTE DBO.Delete_Category {0}", id);
             _db.Entry(category).Reload();
-            //await _db.SaveChangesAsync(); 
-            //_db.Category.Remove(product);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

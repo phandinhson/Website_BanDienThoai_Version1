@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.EntityFrameworkCore.Migrations;
+
 using Website_BanDienThoai_Version1.Data;
 
 namespace Website_BanDienThoai_Version1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191113132915_DatabaseNew")]
+    partial class DatabaseNew
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,17 +27,13 @@ namespace Website_BanDienThoai_Version1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AppointmentDate");
-
-                    b.Property<DateTime>("BillDate");
-
-                    b.Property<string>("CustomerEmail");
+                    b.Property<DateTime>("AppointmentsDate");
 
                     b.Property<string>("CustomerName");
 
-                    b.Property<string>("CustomerPhoneNumber");
+                    b.Property<string>("CustomerNumberPhone");
 
-                    b.Property<int>("TotalPrice");
+                    b.Property<bool>("isConfirmed");
 
                     b.HasKey("Id");
 
@@ -67,7 +65,7 @@ namespace Website_BanDienThoai_Version1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BillId1");
+                   
 
                     b.Property<int>("Price");
 
@@ -76,9 +74,6 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.Property<int>("Quantity");
 
                     b.HasKey("BillId");
-
-                    b.HasIndex("BillId1");
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("Bill_Details");
@@ -136,7 +131,7 @@ namespace Website_BanDienThoai_Version1.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Price");
+                    b.Property<int?>("Price");
 
                     b.Property<int?>("Quantity");
 

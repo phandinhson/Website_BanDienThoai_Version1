@@ -1,35 +1,35 @@
 ﻿
 @model Website_BanDienThoai_Version1.Models.Users
 @{
-    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Customer/Views/Shared/_AccountView.cshtml";
 }
 <br />
-<h2 class="text-info" style="padding-left:40px;font-size:30px;">Edit User</h2>
+<h2 class="text-info" style="padding-left:40px;font-size:30px;">Thay đổi thông tin cá nhân</h2>
 
-<form method="post" asp-action="Edit" style="padding-left:50px;">
+<form method="post" asp-action="Edit">
 
     <div class="p-4 border rounded">
         <input type="hidden" asp-for="Id" />
         <div class="form-group row">
             <label for="Name">Name</label>
-            <input type="text" name="Name" asp-for="Name" class="form-control input-sm" autocomplete="off" data-val="true" >
+            <input type="text" name="Name" asp-for="Name" class="form-control input-sm" autocomplete="off" data-val="true">
         </div>
         <div class="form-group row">
             <label for="UserName">UserName</label>
-            <input type="text" name="UserName" asp-for="UserName" class="form-control input-sm" autocomplete="off" data-val="true" >    
+            <input type="text" name="UserName" asp-for="UserName" class="form-control input-sm" autocomplete="off" data-val="true">
         </div>
         <div class="form-group row">
             <label asp-for="Phone"></label>
-            <input type="text" name="Phone" data-val="true" autocomplete="off"  asp-for="Phone" class="form-control input-sm" >
-           
+            <input type="text" name="Phone" data-val="true" autocomplete="off" asp-for="Phone" class="form-control input-sm">
+
         </div>
         <div class="form-group row">
             <label for="Email">Email</label>
-            <input type="email" name="Email" asp-for="Email" class="form-control input-sm" autocomplete="off" data-val="true" > 
+            <input type="email" name="Email" asp-for="Email" class="form-control input-sm" autocomplete="off" data-val="true">
         </div>
         <div class="form-group row">
             <label for="Password">Password</label>
-            <input type="text" name="Password" asp-for="Password" autocomplete="off" class="form-control input-sm" data-val="true" > 
+            <input type="text" name="Password" asp-for="Password" autocomplete="off" class="form-control input-sm" data-val="true">
         </div>
         <div class="form-group row">
             <label asp-for="DateOfBith">DayOfBirth</label>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="Gender">Gender</label>&nbsp;
+            <label asp-for="Gender">Gender:</label>&nbsp;
             <label>
                 <input type="radio" asp-for="Gender" value=1 /> Male
             </label>&nbsp;
@@ -47,8 +47,9 @@
             </label>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" asp-route-id="@Model.Id" value="Update">
+            <input type="submit" class="btn btn-primary" asp-route-id="" value="Update">
             <a asp-action="Index" class="btn btn-success">Back to List</a>
         </div>
     </div>
 </form>
+

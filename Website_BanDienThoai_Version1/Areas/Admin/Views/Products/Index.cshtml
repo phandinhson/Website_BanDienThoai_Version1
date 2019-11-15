@@ -7,13 +7,16 @@
 <br />
 
 <div class="row">
-    <div class="col-6">
-        <h1 class="text-info"> Product List</h1>
+    <div class="col-6 " style="padding-left:40px;font-size:30px;">
+
+        <p class="text-info"> Product List</p>
     </div>
-    <div class="col-6 text-right">
+
+    <div class="col-6 text-right" style="padding-right:20px">
         <a asp-action="Create" class="btn btn-info">New Product</a>
     </div>
 </div>
+
 <br />
 <div>
     <table class="table table-striped boder">
@@ -49,53 +52,51 @@
             <th>
                 @Html.DisplayNameFor(m => m.SpecialTag)
             </th>
-
         </tr>
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(m => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Memory)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Capacity)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Manufacturer)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(m => item.Category.Name)
-        </td>
-        <td>
-            @if(!item.SpecialTag.Name.Equals("--None--"))
-            {
-                @Html.DisplayFor(m => item.SpecialTag.Name)
-            }
-            
-        </td>
-        <td style="width:100px">
-            <div class="btn-group" role="group">
-                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
-                <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fas fa-list-alt"></i></a>
-                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
-            </div>
-        </td>
-    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Memory)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Category.Name)
+                </td>
+                <td>
+                    @if (!item.SpecialTag.Name.Equals("--None--"))
+                    {
+                        @Html.DisplayFor(m => item.SpecialTag.Name)
+                    }
+                </td>
+                <td style="width:100px">
+                    <div class="btn-group" role="group">
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                        <a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fas fa-list-alt"></i></a>
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                </td>
+            </tr>
 
         }
     </table>
