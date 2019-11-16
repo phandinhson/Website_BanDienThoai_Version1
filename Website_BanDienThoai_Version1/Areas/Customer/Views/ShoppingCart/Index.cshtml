@@ -15,30 +15,27 @@
             <div class="container border border-secondary rounded" style="padding:15px">
                 <div class="row">
                     <div class="col-8" style="border-right:1px solid #bbb9b9">
-                        <table class="table table-striped" width="100%">
+                        <table class="table " width="100%">
                             <tr class="table-info">
                                 <th style="text-align:center;width:20%">
 
                                 </th>
-                                <th style="text-align:center;">
+                                <th style="text-align:center;vertical-align:middle">
                                     <label asp-for="@Model.Products.FirstOrDefault().Name"></label>
                                 </th>
-                                <th style="text-align:center" ;">
+                                <th style="text-align:center;vertical-align:middle">
                                     <label asp-for="@Model.Products.FirstOrDefault().Price"></label>
                                 </th>
-                                <th style="text-align:center" ;">
+                                <th style="text-align:center;vertical-align:middle">
                                     <label asp-for="@Model.Products.FirstOrDefault().Color"></label>
                                 </th>
-                                <th style="text-align:center" ;>
-                                    <label asp-for="@Model.Products.FirstOrDefault().Category.Name"></label>
-                                </th>
-                                <th style="text-align:center;">
+                                <th style="text-align:center;vertical-align:middle">
                                     <label asp-for="@Model.Products.FirstOrDefault().Memory"></label>
                                 </th>
-                                <th style="text-align:center;">
+                                <th style="text-align:center;vertical-align:middle">
                                     <label asp-for="@Model.Products.FirstOrDefault().Color"></label>
                                 </th>
-                                <th style="text-align:center;"></th>
+                                <th style="text-align:center;vertical-align:middle"></th>
                             </tr>
                             @foreach (var item in Model.Products)
                             {
