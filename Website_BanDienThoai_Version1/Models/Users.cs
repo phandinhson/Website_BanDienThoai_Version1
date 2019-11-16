@@ -15,5 +15,6 @@ namespace Website_BanDienThoai_Version1.Models
         public string Phone { get; set; }
         public DateTime DateOfBith { get; set; }
         public int Gender { get; set; }
+        //public string Permission { get; set; }
     }
 }

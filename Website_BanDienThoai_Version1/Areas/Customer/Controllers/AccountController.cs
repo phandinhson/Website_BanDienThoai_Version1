@@ -53,7 +53,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
                     if (model.UserName == "phandinhson")
                       {
                         HttpContext.Session.SetInt32("AccountId", log.Id);
-                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        return RedirectToAction("Index", "Products", new { area = "Admin" });
                       }
 
                     HttpContext.Session.SetInt32("AccountId", log.Id);
