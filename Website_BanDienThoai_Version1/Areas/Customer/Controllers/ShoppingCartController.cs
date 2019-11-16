@@ -24,6 +24,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
             ShoppingCartVM = new ShoppingCartViewModel()
             {
                 Products = new List<Models.Products>(),
+                Appointments=new Appointments()
                
             };
         }
@@ -33,6 +34,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
         public async Task<IActionResult> Index()
         {
             List<int> lstShoppingCart = HttpContext.Session.Get<List<int>>("ssShoppingCart");
+            var AccountId = HttpContext.Session.GetInt32("AccountId");
             if (lstShoppingCart != null && lstShoppingCart.Count > 0)
             {
                 foreach (var cardItem in lstShoppingCart)
@@ -44,6 +46,13 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
                         .FirstOrDefault();
                     ShoppingCartVM.Products.Add(product);
                     total = total + product.Price;
+                }
+                if (AccountId != null)
+                {
+                    Users user = _db.Users.Find(AccountId);
+                    ShoppingCartVM.Appointments.CustomerEmail = user.Email;
+                    ShoppingCartVM.Appointments.CustomerName = user.Name;
+                    ShoppingCartVM.Appointments.CustomerPhoneNumber = user.Phone;
                 }
             }
             return View(ShoppingCartVM);
