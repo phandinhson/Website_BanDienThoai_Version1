@@ -28,7 +28,7 @@
         <!-- Main Header -->
         <header class="main-header">
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b></span>
                 <!-- logo for regular state and mobile devices -->
@@ -48,16 +48,17 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="~/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <img src="~/dist/img/admin.jpg" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">  Phan Đình Sơn </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="~/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                   
+                                    <img src="~/dist/img/admin.jpg" class="img-circle" alt="User Image">
                                     <p>
-                                        Phan Đình Sơn 
+                                        Phan Đình Sơn
                                         <small>Làm admin từ tháng 10.2019</small>
                                     </p>
                                 </li>
@@ -73,10 +74,10 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a asp-area="Customer" asp-controller="Account" asp-action="AccountUser"  class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -92,7 +93,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="~/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="~/dist/img/admin.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>Phan Đình Sơn</p>
@@ -126,10 +127,8 @@
         </div>
         <!-- /.content-wrapper -->
         <!-- Main Footer -->
-        <footer class="main-footer">
+        <footer class="main-footer" style="font-size:14px;">
             <!-- Default to the left -->
-
-           
                 <div class="section group">
                     <div class="col_1_of_4 span_1_of_4">
                         <h4>Thông tin</h4>

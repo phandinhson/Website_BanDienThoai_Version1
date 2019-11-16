@@ -1,15 +1,14 @@
 ﻿@model Website_BanDienThoai_Version1.Models.ViewModel.ProductViewModel
 
-
-<div class="col-6 " style="padding-left:40px;font-size:30px;">
-
+<br />
+<div class="col-6 " style="padding-left:40px;font-size:30px;text-align:center">
     <p class="text-info">  Delete Product </p>
 </div>
 <br />
 <br />
 <div style="padding-left:50px;">
     <form method="post">
-        <div class="p-4 border rounded row">
+        <div class="p-4 border rounded row text-bold">
             <input hidden asp-for="Products.Id" />
             <div asp-validation-summary="ModelOnly" readonly class="text-danger"></div>
             <div class="col-8">
@@ -90,7 +89,7 @@
             <div class="col-1">
             </div>
             <div class="col-3">
-                <img src="@Model.Products.Image"  style="border-radius:5px;border:1px solid #bbb9b9;" />
+                <img src="@Model.Products.Image" style="border-radius:5px;border:1px solid #bbb9b9;" />
             </div>
             <br />
             <div class="form-group">

@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website Ban Dien Thoai</title>
+    <title>Website Bán điện thoại di động</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -95,10 +95,11 @@
 
                     </ul>
                 </div>
-                <div class="search_box">
-                    <form>
-                        <input type="text" value="Search" onfocus="this.value = '';"
-                               onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+                <div class="search_box text-bold">
+                    <form asp-area="Customer" asp-controller="Home" asp-action="Search" method="post">
+                        <input type="text" value="" name="SearchString" placeholder="Search";"/>
+                         
+                        <input type="submit" value="">
                     </form>
                 </div>
                 <div class="clear"></div>

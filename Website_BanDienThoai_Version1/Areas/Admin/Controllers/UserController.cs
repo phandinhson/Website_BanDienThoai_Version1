@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Website_BanDienThoai_Version1.Data;
@@ -16,9 +18,9 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            //var users = _db.Users.FromSql("EXECUTE DBO.Select_All_Category");
-            return View(_db.Users.ToList());
-            //return View(users);
+            var users = _db.Users.FromSql("EXECUTE DBO.Select_All_User");
+         
+            return View(users);
         }
         //Get Create Action Method
         public IActionResult Create()
@@ -31,12 +33,11 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_Category {0}",
-                //    category.Name);
-                //_db.Entry(category).Reload();
-                //await _db.SaveChangesAsync();
-                _db.Add(user);
+                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_Users {0},{1},{2},{3},{4},{5},{6}",
+                   user.UserName, user.Password, user.Name, user.Email, user.Phone, user.DateOfBith,user.Gender);
+
                 await _db.SaveChangesAsync();
+          ;
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -67,12 +68,13 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
-                //   user.Name);
-                //_db.Entry(user).Reload();
-                //await _db.SaveChangesAsync();
-                _db.Update(user);
+               
+               _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_User {0},{1},{2},{3},{4},{5},{6},{7}", id,
+                   user.UserName, user.Password, user.Name, user.Email, user.Phone, user.DateOfBith, user.Gender);
+                _db.Entry(user).Reload();
                 await _db.SaveChangesAsync();
+                //_db.Update(user);
+                //await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -97,14 +99,11 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
             var user = await _db.Users.FindAsync(id);
-
-            //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Delete_Category {0}", id);
-            //_db.Entry(category).Reload();
+            _db.Database.ExecuteSqlCommand("EXECUTE DBO.Delete_User {0}", id);
             await _db.SaveChangesAsync();
-            _db.Users.Remove(user);
-            await _db.SaveChangesAsync();
+            //_db.Users.Remove(user);
+            //await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

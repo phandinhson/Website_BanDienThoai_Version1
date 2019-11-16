@@ -20,6 +20,19 @@ namespace Website_BanDienThoai_Version1.Controllers
         {
             _db = db;
         }
+        public async Task<IActionResult> Search( string searchString)
+        {
+
+            var productList = from m in _db.Products
+                              select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productList = productList.Where(s => s.Name.Contains(searchString));
+            }
+            return View( await productList.ToListAsync());
+           
+        }
+       
         public async Task<IActionResult> Index()
         {
             var productList = await _db.Products.Include(m => m.Category).Include(m => m.SpecialTag).ToListAsync();

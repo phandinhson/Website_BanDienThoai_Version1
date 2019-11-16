@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Website_BanDienThoai_Version1.Data;
-using Website_BanDienThoai_Version1.Extentions;
+
 using Website_BanDienThoai_Version1.Models;
 using Website_BanDienThoai_Version1.Models.ViewModel;
 
@@ -52,7 +52,8 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
                 {
                     if (model.UserName == "phandinhson")
                       {
-                          return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        HttpContext.Session.SetInt32("AccountId", log.Id);
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
                       }
 
                     HttpContext.Session.SetInt32("AccountId", log.Id);
@@ -158,7 +159,15 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
 
             return View();
         }
-
+        /// <summary>
+        /// Get: FogetPassword
+        /// </summary>
+        
+        public IActionResult FogetPassword()
+        {
+            return View();
+        }
+      
         public void ValidationMessage(string key, string alert, string value)
         {
             try

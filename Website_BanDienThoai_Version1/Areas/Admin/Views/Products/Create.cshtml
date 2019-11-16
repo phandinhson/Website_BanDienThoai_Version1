@@ -5,13 +5,15 @@
 }
 
 <br />
-<h2 class="text-info" style="padding-left:30px;font-size:28px;">Create Product</h2>
-<div style="padding-left:30px;">
+<h2 class="text-info" style="padding-left:30px;font-size:28px;text-align:center">Create Product</h2>
+<br />
+<br />
+<div style="padding-left:30px;font-size:14px;">
     <form method="post" enctype="multipart/form-data">
-        <div class="border">
+        <div class="border" style="font-size:14px">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Name"></label>
                 </div>
                 <div class="col-5">
@@ -20,7 +22,7 @@
                 <span asp-validation-for="Products.Name" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Image"></label>
                 </div>
                 <div class="col-5">
@@ -29,16 +31,16 @@
                 <span asp-validation-for="Products.Image" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Memory"></label>
                 </div>
-                <div class="col-5">
+                <div class="col-5 text-bold">
                     <input asp-for="Products.Memory" class="form-control" />
                 </div>
                 <span asp-validation-for="Products.Memory" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Quantity"></label>
                 </div>
                 <div class="col-5">
@@ -47,7 +49,7 @@
                 <span asp-validation-for="Products.Quantity" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Capacity"></label>
                 </div>
                 <div class="col-5">
@@ -56,7 +58,7 @@
                 <span asp-validation-for="Products.Capacity" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Manufacturer"></label>
                 </div>
                 <div class="col-5">
@@ -65,7 +67,7 @@
                 <span asp-validation-for="Products.Manufacturer" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Color"></label>
                 </div>
                 <div class="col-5">
@@ -74,7 +76,7 @@
                 <span asp-validation-for="Products.Color" class="text-danger"></span>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Products.Price"></label>
                 </div>
                 <div class="col-5">
@@ -82,7 +84,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="Category"></label>
                 </div>
                 <div class="col-5">
@@ -90,7 +92,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-2">
+                <div class="col-2 text-bold">
                     <label asp-for="SpecialTag"></label>
                 </div>
                 <div class="col-5">

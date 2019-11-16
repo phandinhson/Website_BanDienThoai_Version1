@@ -37,7 +37,11 @@ namespace Website_BanDienThoai_Version1.Migrations
 
                     b.Property<int>("TotalPrice");
 
+                    b.Property<int>("UserId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Appointments");
                 });
@@ -187,6 +191,14 @@ namespace Website_BanDienThoai_Version1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Appointments", b =>
+                {
+                    b.HasOne("Website_BanDienThoai_Version1.Models.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Website_BanDienThoai_Version1.Models.Bill", b =>
