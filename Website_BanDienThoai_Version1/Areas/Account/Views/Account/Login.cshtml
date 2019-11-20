@@ -1,29 +1,39 @@
 ﻿
 @model Website_BanDienThoai_Version1.Models.ViewModel.LoginViewModel
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card" style="width: 18rem;margin-top:5rem">
+            <div class="card-header" style="background-color: lightskyblue;">
+                <div class="form-group">
+                    <label>Sign in</label><br />
+                    <div class="text-right">
+                        <label>Forgot password?</label>
+                    </div>
+                </div>
+            </div>
 
-<form role="form" asp-action="Login" asp-controller="Account" method="post">
+            <div class="card-body">
+                <form role="form" asp-action="Login" asp-controller="Account" method="post">
+                    <div class="form-group">
+                        <label for="User">Username or Email</label>
+                        <input type="text"  name="UserName" asp-for="UserName" class="form-control" id="User"   data-val="true" aria-describedby="emailHelp"
+                               placeholder="Username or Email" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Password">Password</label>
+                        <input type="password" name="Password" asp-for="Password" class="form-control" id="Password" placeholder="Password" />
+                    </div>
 
-    <div class="container">
-        <h2 style="text-align: center; font-size:50px"><b>Login</b></h2>
-        <h2 style="text-align: center; font-size:20px;font-style:italic;color:red;">@TempData["StatusMessage"]</h2>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    </div>
 
-        <label for="uname"><b>Username</b></label>
-        <input type="text" name="UserName" asp-for="UserName" class="form-control input-sm" autocomplete="off" data-val="true" placeholder="UserName">
-        <span asp-validation-for="UserName" class="text-danger"></span>
+                    <button class="btn btn-primary" style="background-color: lawngreen;width:100%">
+                        Login
+                    </button>
+                   
 
-
-        <label for="Password">Password</label>
-        <input type="password" name="Password" asp-for="Password" autocomplete="off" class="form-control input-sm" data-val="true" placeholder="Password">
-        <span asp-validation-for="Password" class="text-danger"></span>
-
-        <button type="submit" style="background-color:rgb(0, 123, 255);width:100% ">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-        <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-danger">Cancel</a>
-        <span class="psw">Forgot <a asp-area="Customer" asp-controller="Account" asp-action="FogetPassword">Password?</a></span>
-    </div>
-</form>
