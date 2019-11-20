@@ -22,9 +22,10 @@ namespace Website_BanDienThoai_Version1.Controllers
         }
         public async Task<IActionResult> Search( string searchString)
         {
-
+            //var productList = _db.Products.FromSql("EXECUTE DBO.Select_All_Product");
             var productList = from m in _db.Products
                               select m;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 productList = productList.Where(s => s.Name.Contains(searchString));
@@ -35,8 +36,10 @@ namespace Website_BanDienThoai_Version1.Controllers
        
         public async Task<IActionResult> Index()
         {
+          
             var productList = await _db.Products.Include(m => m.Category).Include(m => m.SpecialTag).ToListAsync();
             return View(productList);
+            //return View(_db.Products.FromSql("EXECUTE DBO.Select_All_Product"));
         }
         public async Task<IActionResult> Details(int id)
         {

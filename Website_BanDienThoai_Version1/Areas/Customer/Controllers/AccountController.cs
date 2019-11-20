@@ -41,7 +41,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
             if (ModelState.IsValid)
             {
                 var log = _db.Users.FromSql("EXECUTE [dbo].[User_Login] {0},{1}", model.UserName, model.Password).FirstOrDefault();
-                //var log = _db.Users.Where(x => x.UserName.Equals(model.UserName) && x.Password.Equals(model.Password)).FirstOrDefault();
+             
                 if (log==null)
                 {
                     TempData["StatusMessage"] = "Tài khoản hoặc mật khẩu bị sai!!!";
@@ -146,19 +146,17 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
             }
             if (ModelState.IsValid)
             {
+                //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_User {0},{1},{2},{3},{4},{5},{6},{7}", id,
+                // user.UserName, user.Password, user.Name, user.Email, user.Phone, user.DateOfBith, user.Gender);
+                //_db.Entry(user).Reload();
+                //await _db.SaveChangesAsync();
                 _db.Update(user);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index","Home");
             }
             return View(user);
         }
-        // registration Page load
-        public IActionResult Registration()
-        {
-            ViewData["Message"] = "Registration Page";
-
-            return View();
-        }
+      
         /// <summary>
         /// Get: FogetPassword
         /// </summary>

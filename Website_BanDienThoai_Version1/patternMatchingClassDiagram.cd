@@ -1,32 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Website_BanDienThoai_Version1.Areas.Admin.Controllers.CategoryController">
-    <Position X="0.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAAAABAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
-      <FileName>Areas\Admin\Controllers\CategoryController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Website_BanDienThoai_Version1.Areas.Admin.Controllers.SpecialTagController">
-    <Position X="7" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAAAABAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
-      <FileName>Areas\Admin\Controllers\SpecialTagController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Website_BanDienThoai_Version1.Areas.Admin.Controllers.UserController">
-    <Position X="4.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAAAAAAAAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
-      <FileName>Areas\Admin\Controllers\UserController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Website_BanDienThoai_Version1.Controllers.ProductsController">
-    <Position X="2.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgAgAAAABAACAAAgAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
-      <FileName>Areas\Admin\Controllers\ProductsController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

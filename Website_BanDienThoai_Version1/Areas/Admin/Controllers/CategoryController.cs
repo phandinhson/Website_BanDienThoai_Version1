@@ -91,25 +91,25 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             return View(product);
         }
 
-        ////POST Details action Method
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Details(int id, Category category)
-        //{
-        //    if (id != category.Id)
-        //    {
-        //        return NotFound();
-        //    }
-        //    if (ModelState.IsValid)
-        //    {
-        //        _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
-        //           category.Name);
-        //        _db.Entry(category).Reload();
-        //        await _db.SaveChangesAsync();
-        //        return RedirectToPage("Index");
-        //    }
-        //    return View(category);
-        //}
+        //POST Details action Method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int id, Category category)
+        {
+            if (id != category.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
+                   category.Name);
+                _db.Entry(category).Reload();
+                await _db.SaveChangesAsync();
+                return RedirectToPage("Index");
+            }
+            return View(category);
+        }
 
         // Get Delete Action Method
         public async Task<IActionResult> Delete(int? id)
