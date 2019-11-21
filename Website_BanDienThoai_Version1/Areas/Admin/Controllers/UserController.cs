@@ -18,9 +18,7 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var users = _db.Users.FromSql("EXECUTE DBO.Select_All_User");
-         
-            return View(users);
+            return View(_db.Users.ToList());
         }
         //Get Create Action Method
         public IActionResult Create()
@@ -33,11 +31,8 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_Users {0},{1},{2},{3},{4},{5},{6}",
-                   user.UserName, user.Password, user.Name, user.Email, user.Phone, user.DateOfBith,user.Gender);
-
+                _db.Add(user);
                 await _db.SaveChangesAsync();
-          ;
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -69,12 +64,8 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                
-               _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_User {0},{1},{2},{3},{4},{5},{6},{7}", id,
-                   user.UserName, user.Password, user.Name, user.Email, user.Phone, user.DateOfBith, user.Gender);
-                _db.Entry(user).Reload();
+                _db.Update(user);
                 await _db.SaveChangesAsync();
-                //_db.Update(user);
-                //await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(user);
@@ -100,10 +91,9 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var user = await _db.Users.FindAsync(id);
-            _db.Database.ExecuteSqlCommand("EXECUTE DBO.Delete_User {0}", id);
+          
+            _db.Users.Remove(user);
             await _db.SaveChangesAsync();
-            //_db.Users.Remove(user);
-            //await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

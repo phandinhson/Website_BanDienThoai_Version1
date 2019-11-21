@@ -19,9 +19,8 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-     
-            var special = _db.SpecialTag.FromSql("EXECUTE DBO.Select_All_SpecialTag");
-            return View(special);
+
+            return View(_db.SpecialTag.ToList());
         }
         public IActionResult Create()
         {
@@ -33,12 +32,10 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_SpecialTag {0}",
-                    special.Name);
-                _db.Entry(special).Reload();
+                _db.Add(special);
                 await _db.SaveChangesAsync();
-            
                 return RedirectToAction(nameof(Index));
+
             }
             return View(special);
         }
@@ -50,7 +47,7 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
                 return NotFound();
             }
             var product = await _db.SpecialTag.FindAsync(id);
-            //var product =_db.SpecialTag.FromSql("EXECUTE DBO.Sellect_SpecialTag_Id {0}", id);
+            
             if (product == null)
             {
                 return NotFound();
@@ -69,12 +66,9 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_SpecialTag {0},{1}", id,
-                   special.Name);
-                _db.Entry(special).Reload();
+          
+                _db.Update(special);
                 await _db.SaveChangesAsync();
-                //_db.Update(special);
-                //await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(special);
@@ -105,10 +99,6 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
-                //   category.Name);
-                //_db.Entry(category).Reload();
-                //await _db.SaveChangesAsync();
                 _db.Update(special);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("Index");
@@ -138,10 +128,6 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         {
 
             var special = await _db.SpecialTag.FindAsync(id);
-
-            //_db.Database.ExecuteSqlCommand("EXECUTE DBO.Delete_Category {0}", id);
-            //_db.Entry(category).Reload();
-            //await _db.SaveChangesAsync();
 
             
             _db.SpecialTag.Remove(special);

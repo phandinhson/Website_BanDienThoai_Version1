@@ -20,8 +20,7 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var categories = _db.Category.FromSql("EXECUTE DBO.Select_All_Category");
-            return View(categories);
+            return View(_db.Category.ToList());
         }
         //Get Create Action Method
         public IActionResult Create()
@@ -34,9 +33,7 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Insert_Category {0}",
-                    category.Name);
-                _db.Entry(category).Reload();
+                _db.Add(category);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -68,9 +65,7 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Database.ExecuteSqlCommand("EXECUTE DBO.Update_Category {0},{1}", id,
-                   category.Name);
-                _db.Entry(category).Reload();
+                _db.Update(category);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -132,8 +127,8 @@ namespace Website_BanDienThoai_Version1.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _db.Category.FindAsync(id);
-            _db.Database.ExecuteSqlCommand("EXECUTE DBO.Delete_Category {0}", id);
-            _db.Entry(category).Reload();
+      
+            _db.Category.Remove(category);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
