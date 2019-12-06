@@ -33,10 +33,12 @@ namespace Website_BanDienThoai_Version1.Controllers
  
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-           
-            return View(_db.Products.FromSql("EXECUTE DBO.Select_All_Product"));
+
+            var products = _db.Products.Include(m => m.Category).Include(m => m.SpecialTag);
+
+            return View(await products.ToListAsync());
         }
         //Get: Products Create
         public IActionResult Create()
