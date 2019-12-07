@@ -46,13 +46,13 @@ namespace Website_BanDienThoai_Version1.Areas.Account
                 else
                 {
                     HttpContext.Session.SetInt32("AccountId", log.Id);
+                    HttpContext.Session.SetString("UserName", log.UserName);
                     if (model.UserName == "phandinhson")
                     {
                       
                         return RedirectToAction("Index", "Products", new { area = "Admin" });
                     }
-
-
+                    
 
                     return RedirectToAction("Index", "Home", new { area = "Customer" });
                 }
@@ -86,7 +86,8 @@ namespace Website_BanDienThoai_Version1.Areas.Account
         {
             int value = -1;
             HttpContext.Session.SetInt32("AccountId", value);
-            return RedirectToAction("Index", "Home");
+            HttpContext.Session.SetString("UserName","");
+            return RedirectToAction("Index", "Home", new { area = "Customer" });
         }
         public IActionResult AccountUser()
         {

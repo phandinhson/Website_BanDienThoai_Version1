@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using Website_BanDienThoai_Version1.Extentions
 
-
 @inject IHttpContextAccessor HttpContextAccessor
 
 <!DOCTYPE html>
@@ -42,12 +41,17 @@
                     </div>
                     <div class="account_desc">
                         <ul>
-                          
-                            <li><a asp-area="Account" asp-controller="Account" asp-action="Register">Đăng ký</a></li>
-                            <li><a asp-area="Account" asp-controller="Account" asp-action="Login">Đăng nhập</a></li>
-                            <li><a asp-area="Account" asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
-                            <li><a asp-area="Account" asp-controller="Account" asp-action="AccountUser">Tài khoản</a></li>
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("UserName") == null||HttpContextAccessor.HttpContext.Session.GetString("UserName") == "")
+                            {
+                                <li><a asp-area="Account" asp-controller="Account" asp-action="Register">Đăng ký</a></li>
+                                <li><a asp-area="Account" asp-controller="Account" asp-action="Login">Đăng nhập</a></li>
 
+                            }
+                            else
+                            {
+                                <li><a asp-area="Account" asp-controller="Account" asp-action="AccountUser">@HttpContextAccessor.HttpContext.Session.GetString("UserName")</a></li>
+                                <li><a asp-area="Account" asp-controller="Account" asp-action="Logout">Đăng xuất</a></li>
+                            }
                         </ul>
                     </div>
                     <div class="clear"></div>
