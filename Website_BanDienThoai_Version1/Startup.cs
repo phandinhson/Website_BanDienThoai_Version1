@@ -76,8 +76,8 @@ namespace Website_BanDienThoai_Version1
             {
                 routes.MapRoute(
                name: "areas",
-              template: "{area=Account}/{controller}/{action}/{id?}",
-                   new { controller = "Account", action = "Login" });
+              template: "{area=Customer}/{controller}/{action}/{id?}",
+                   new { controller = "Home", action = "Index" });
                 //routes.MapRoute(
                 //    name: "default",
                 //    template: "{controller=Home}/{action=Index}/{id?}");
