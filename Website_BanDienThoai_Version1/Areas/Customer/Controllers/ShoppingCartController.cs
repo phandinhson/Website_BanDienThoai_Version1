@@ -46,6 +46,7 @@ namespace Website_BanDienThoai_Version1.Areas.Customer.Controllers
                         .FirstOrDefault();
                     ShoppingCartVM.Products.Add(product);
                     total = total + product.Price;
+                    ShoppingCartVM.Appointments.TotalPrice = total;
                 }
                 if (AccountId != null)
                 {
